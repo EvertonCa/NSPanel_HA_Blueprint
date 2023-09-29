@@ -8811,11 +8811,11 @@ action:
                   button_domain: '{{ (button_context.entity.split(".")[0] | default("unknown")) if button_context.entity | length > 0 else "unknown" }}'
               - service: >
                   {% if button_domain in ["light", "switch", "cover", "input_boolean", "automation", "fan"] %}
-                    {{ button_domain }}.toggle
+                    homeassistant.update_entity
                   {% elif button_domain in ["button", "input_button"] %}
-                    {{ button_domain }}.press
+                    homeassistant.update_entity
                   {% elif button_domain in ["scene", "script"] %}
-                    {{ button_domain }}.turn_on
+                    homeassistant.update_entity
                   {% else %}
                     homeassistant.update_entity
                   {% endif %}
